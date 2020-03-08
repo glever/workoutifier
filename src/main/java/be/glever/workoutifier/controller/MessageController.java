@@ -20,11 +20,12 @@ public class MessageController {
     private SimpMessagingTemplate simpMessagingTemplate;
 
     @MessageMapping("/hello")
-    @SendToUser("/queue/greetings")
-    public Greeting greeting(HelloMessage message) throws InterruptedException {
+//    @SendToUser("/queue/greetings")
+    public void greeting(HelloMessage message) throws InterruptedException {
 //        Thread.sleep(1000L);
         Greeting greeting = new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
         this.simpMessagingTemplate.convertAndSend("/topic/greetings", greeting);
-        return greeting;
+        this.simpMessagingTemplate.convertAndSend("/queue/greetings", greeting);
+        System.out.println("server received message " + message);
     }
 }
