@@ -1,0 +1,38 @@
+openapi: 3.0.1
+info:
+  title: Workoutifier REST model
+  description: 'This spec contains the shared model between web client and server from which the code is generated'
+  version: 0.0.1
+tags:
+  - name: device
+    description: Related to the ANT device itself
+  - name: channel
+    description: Related to channels
+  - name: message
+    description: related to messages
+paths:
+  /all:
+    get:
+      responses:
+        200:
+          description: meh
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/All'
+components:
+  schemas:
+    All:
+      type: object
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+    Device:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - connected
+            - disconnected
+

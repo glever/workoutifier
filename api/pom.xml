@@ -16,8 +16,8 @@
 
     <modules>
         <module>spec</module>
-        <module>angular</module>
-        <module>server</module>
+        <module>typescript-model</module>
+        <module>java-model</module>
     </modules>
 
 
