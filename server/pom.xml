@@ -22,7 +22,7 @@
         <!-- compile -->
         <dependency>
             <groupId>be.glever.workoutifier.api</groupId>
-            <artifactId>server</artifactId>
+            <artifactId>java-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

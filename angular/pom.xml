@@ -16,4 +16,14 @@
   <version>0.0.1-SNAPSHOT</version>
 
 
+  <dependencies>
+    <dependency>
+      <groupId>be.glever.workoutifier.api</groupId>
+      <artifactId>typescript-model</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>pom</scope>
+    </dependency>
+  </dependencies>
+
+
 </project>
