@@ -21,9 +21,15 @@
     <dependencies>
         <!-- compile -->
         <dependency>
+            <groupId>be.glever.workoutifier</groupId>
+            <artifactId>angular</artifactId>
+            <type>pom</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>be.glever.workoutifier.api</groupId>
             <artifactId>java-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -44,7 +50,6 @@
         <dependency>
             <groupId>be.glever</groupId>
             <artifactId>j-antplus</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <!-- test -->
@@ -72,62 +77,25 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>be.glever.workoutifier.WorkoutifierApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
 
     <profiles>
         <profile>
-            <id>npm-build</id>
-            <activation>
-                <property>
-                    <name>skipNpm</name>
-                    <value>!true</value>
-                </property>
-            </activation>
-
+            <id>ui</id>
             <build>
                 <plugins>
-
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <version>1.9.1</version>
-                        <configuration>
-                            <workingDirectory>${angular-module-dir}</workingDirectory>
-                            <installDirectory>target</installDirectory>
-                            <nodeVersion>${node.version}</nodeVersion>
-                            <npmVersion>${npm.version}</npmVersion>
-                        </configuration>
-
-                        <executions>
-                            <execution>
-                                <id>install node and npm</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>install-node-and-npm</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>npm install</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>npm run build</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>run build -- --prod</arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
                     <plugin>
                         <artifactId>maven-resources-plugin</artifactId>
                         <version>3.1.0</version>

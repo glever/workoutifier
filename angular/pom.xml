@@ -21,9 +21,63 @@
       <groupId>be.glever.workoutifier.api</groupId>
       <artifactId>typescript-model</artifactId>
       <version>0.0.1-SNAPSHOT</version>
-      <scope>pom</scope>
+      <type>pom</type>
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>ui</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <configuration>
+              <nodeVersion>${node.version}</nodeVersion>
+              <workingDirectory>${project.basedir}</workingDirectory>
+            </configuration>
 
+            <executions>
+              <execution>
+                <id>install node and npm</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>npm install @glever/workoutifier-model</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <arguments>install @glever/workoutifier-model</arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>npm install</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>npm run build</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <arguments>run build -- --prod</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

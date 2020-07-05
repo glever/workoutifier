@@ -24,6 +24,7 @@
         <node.version>v14.1.0</node.version>
         <npm.version>6.14.4</npm.version>
         <version.spring-boot>2.2.6.RELEASE</version.spring-boot>
+
     </properties>
 
 
@@ -35,6 +36,12 @@
                 <version>${version.spring-boot}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>be.glever</groupId>
+                <artifactId>j-antplus</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
