@@ -5,8 +5,7 @@ import {Device} from '@glever/workoutifier-model'
 @Component({
   selector: 'app-root',
   template: `
-    <app-messaging></app-messaging>
-    <router-outlet></router-outlet>
+    <app-workoutifier></app-workoutifier>
   `
 })
 export class AppComponent {

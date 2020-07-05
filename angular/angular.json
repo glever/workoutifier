@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "workoutifier"
+    }
+  },
+  "defaultProject": "workoutifier",
+  "cli": {
+    "analytics": false
+  }
 }
