@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RxStompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
+import { DeviceStatusRequestMsg } from '@glever/workoutifier-model';
 
 @Component({
   selector: 'app-messaging',
@@ -10,7 +11,7 @@ import { Message } from '@stomp/stompjs';
       <h2>Received messages</h2>
       <ol>
         <!-- we will use Angular binding to populate list of messages -->
-        <li class="message" *ngFor="let message of receivedMessages"></li>
+        <li class="message" *ngFor="let message of receivedMessages">{{message}}</li>
       </ol>
     </div>
 
@@ -35,7 +36,7 @@ export class MessagingComponent implements OnInit {
   }
 
   onSendMessage() {
-    const message = { name: `ng client` };
+    const message = {type: "DeviceStatusRequestMsg"} as DeviceStatusRequestMsg;
     this.rxStompService.publish({ destination: '/app/hello', body: JSON.stringify(message) });
   }
 }

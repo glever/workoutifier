@@ -1,5 +1,9 @@
 package be.glever.workoutifier.controller;
 
+import be.glever.workoutifier.Device;
+import be.glever.workoutifier.DeviceStatusRequestMsg;
+import be.glever.workoutifier.DeviceStatusResponseMsg;
+import be.glever.workoutifier.Message;
 import be.glever.workoutifier.stomp.messages.Greeting;
 import be.glever.workoutifier.stomp.messages.HelloMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +24,13 @@ public class MessageController {
     private SimpMessagingTemplate simpMessagingTemplate;
 
     @MessageMapping("/hello")
-//    @SendToUser("/queue/greetings")
-    public void greeting(HelloMessage message) throws InterruptedException {
+    @SendToUser("/queue/greetings")
+    public void greeting(Message message) throws InterruptedException {
+
 //        Thread.sleep(1000L);
-        Greeting greeting = new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-        this.simpMessagingTemplate.convertAndSend("/topic/greetings", greeting);
-        this.simpMessagingTemplate.convertAndSend("/queue/greetings", greeting);
+        DeviceStatusResponseMsg deviceStatusResponseMsg = new DeviceStatusResponseMsg().device(new Device().status(Device.StatusEnum.DISCONNECTED));
+        this.simpMessagingTemplate.convertAndSend("/topic/greetings", deviceStatusResponseMsg);
+        this.simpMessagingTemplate.convertAndSend("/queue/greetings", deviceStatusResponseMsg);
         System.out.println("server received message " + message);
     }
 }
