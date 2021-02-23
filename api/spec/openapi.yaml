@@ -12,6 +12,7 @@ tags:
     description: related to messages
 paths:
   /all:
+    description: Dummy path which references all objects.
     get:
       responses:
         200:
@@ -19,20 +20,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/All'
+                oneOf:
+                  - $ref: '#/components/schemas/Message'
 components:
   schemas:
-    All:
+    Message:
       type: object
+      required:
+        - type
       properties:
-        device:
-          $ref: '#/components/schemas/Device'
+        type:
+          type: string
+      discriminator:
+        propertyName: type
+    DeviceStatusRequestMsg:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Message'
+    DeviceStatusResponseMsg:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Message'
+        - type: object
+          properties:
+            device:
+              $ref: '#/components/schemas/Device'
     Device:
       type: object
       properties:
+        test:
+          type: string
         status:
           type: string
-          enum:
-            - connected
-            - disconnected
-
+          enum: [connected, disconnected]

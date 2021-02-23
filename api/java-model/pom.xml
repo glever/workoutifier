@@ -21,14 +21,24 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.2.11</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.1.0</version>
+            <version>0.2.1</version>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
@@ -50,7 +60,7 @@
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>4.3.0</version>
+                <version>5.0.1</version>
                 <executions>
                     <execution>
                         <goals>
@@ -70,6 +80,29 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- Fix type hierarchy: Workaround either my lack of openapi mapping knowledge or bug in openapi generator -->
+                    <file>target/generated-sources/openapi/src/main/java/be/glever/workoutifier/Message.java</file>
+                    <replacements>
+                        <replacement>
+                            <token>JsonTypeInfo.As.EXISTING_PROPERTY</token>
+                            <value>JsonTypeInfo.As.PROPERTY</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
             </plugin>
         </plugins>
     </build>
