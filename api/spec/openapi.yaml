@@ -26,10 +26,9 @@ components:
   schemas:
     Message:
       type: object
-      required:
-        - type
       properties:
         type:
+          description: discriminator field. Should contain name of subtype object.
           type: string
       discriminator:
         propertyName: type
