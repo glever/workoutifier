@@ -1,6 +1,5 @@
-import {Component} from '@angular/core';
-import {Device} from '@glever/workoutifier-model';
-
+import { Component } from '@angular/core';
+import { Device } from '@glever/workoutifier-model';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +8,5 @@ import {Device} from '@glever/workoutifier-model';
   `
 })
 export class AppComponent {
-
   private device: Device;
 }

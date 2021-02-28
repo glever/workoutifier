@@ -21,29 +21,21 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/Message'
+                  - $ref: '#/components/schemas/ApiMsg'
 components:
   schemas:
-    Message:
+    ApiMsg:
       type: object
       properties:
-        type:
-          description: discriminator field. Should contain name of subtype object.
-          type: string
-      discriminator:
-        propertyName: type
-    DeviceStatusRequestMsg:
+        request:
+          enum: [ 'DeviceStatus' ]
+        deviceStatusResponse:
+          $ref: '#/components/schemas/DeviceStatusResponse'
+    DeviceStatusResponse:
       type: object
-      allOf:
-        - $ref: '#/components/schemas/Message'
-    DeviceStatusResponseMsg:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Message'
-        - type: object
-          properties:
-            device:
-              $ref: '#/components/schemas/Device'
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
     Device:
       type: object
       properties:
@@ -51,4 +43,4 @@ components:
           type: string
         status:
           type: string
-          enum: [connected, disconnected]
+          enum: [ connected, disconnected ]

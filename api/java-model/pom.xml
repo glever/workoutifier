@@ -92,8 +92,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- Fix type hierarchy: Workaround either my lack of openapi mapping knowledge or bug in openapi generator -->
-                    <file>${project.build.directory}/generated-sources/openapi/src/main/java/be/glever/workoutifier/Message.java</file>
                     <replacements>
                         <replacement>
                             <token>JsonTypeInfo.As.EXISTING_PROPERTY</token>
