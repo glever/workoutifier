@@ -36,7 +36,7 @@ export class MessagingComponent implements OnInit {
   }
 
   onSendMessage() {
-    const message = {type: "DeviceStatusRequestMsg"} as DeviceStatusRequestMsg;
+    const message = {type: 'DeviceStatusRequestMsg'} as DeviceStatusRequestMsg;
     this.rxStompService.publish({ destination: '/app/hello', body: JSON.stringify(message) });
   }
 }

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Device} from '@glever/workoutifier-model'
+import {Device} from '@glever/workoutifier-model';
 
 
 @Component({
