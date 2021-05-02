@@ -32,7 +32,7 @@
                             <generateApis>false</generateApis>
                             <generateModels>true</generateModels>
                             <configOptions>
-                                <ngVersion>9.1.0</ngVersion>
+                                <ngVersion>11</ngVersion>
                                 <npmName>@glever/workoutifier-model</npmName>
                             </configOptions>
                         </configuration>
@@ -60,13 +60,23 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>npm pack</id>
+                        <id>npm install</id>
                         <phase>package</phase>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>pack</arguments>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm run  build</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
                         </configuration>
                     </execution>
                 </executions>
