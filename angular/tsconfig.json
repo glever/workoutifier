@@ -1,7 +1,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
+    "paths": {
+      "@glever/workoutifier-model": ["../api/typescript-model/target/generated-sources/openapi/"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -22,5 +25,10 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "references": [
+    {
+      "path": "../api/typescript-model/target/generated-sources/openapi"
+    }
+  ]
 }
